@@ -1,0 +1,74 @@
+﻿@using BTL_WEB.Models;
+@using X.PagedList;
+@using X.PagedList.Mvc.Core;
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model X.PagedList.IPagedList<TDanhMucSp>
+
+@{
+    ViewData["Title"] = "SanPham";
+    Layout = "~/Areas/Admin/Views/Shared/View.cshtml";
+}
+
+<h1>SanPham</h1>
+
+<p>
+    <a asp-action="Add">Create New</a>
+</p>
+<p>@TempData["Message"]</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Tên sản phẩm
+            </th>
+            
+            <th>
+                Giá
+            </th>
+            
+            
+            <th>
+                Số lượng
+            </th>
+            <th>
+                Giới thiệu
+            </th>
+            
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.TenSp)
+            </td>
+            
+            
+            <td>
+                @Html.DisplayFor(modelItem => item.Gia)
+            </td>
+            
+            
+            
+                
+            <td>
+                @Html.DisplayFor(modelItem => item.Slton)
+            </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.GioiThieuSp)
+                </td>
+            
+            <td>
+                <a asp-action="Upd" asp-route-maSp="@item.MaSp">Sửa thông tin</a> |
+                <a asp-action="Details" asp-route-id="@item.MaSp">Details</a> |
+                <a asp-action="Delete" asp-route-maSp="@item.MaSp">Xóa sản phẩm</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+@Html.PagedListPager(Model,page => Url.Action("SanPham", new {page = page}), new X.PagedList.Web.Common.PagedListRenderOptions(){
+    LiElementClasses = new List<String> {"page-item"},
+    PageClasses = new List<String> {"page-link"}
+})

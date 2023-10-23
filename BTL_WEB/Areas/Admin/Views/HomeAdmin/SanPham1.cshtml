@@ -1,0 +1,59 @@
+﻿@using Microsoft.AspNetCore.Mvc;
+
+
+@model IEnumerable<BTL_WEB.Models.TDanhMucSp>
+@{
+    ViewData["Title"] = "SanPham";
+    Layout = "~/Areas/Admin/Views/Shared/View.cshtml";
+}
+
+<h1>SanPham</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table-success">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.TenSp)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DonGiaBan)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Gia)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GioiThieuSp)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TenSp)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DonGiaBan)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Gia)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.GioiThieuSp)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.MaSp">Edit</a>
+                    <a asp-action="Details" asp-route-id="@item.MaSp">Details</a>
+                    <a asp-action="Delete" asp-route-id="@item.MaSp">Delete</a>
+                </td>
+            </tr>
+            
+        }
+    </tbody>
+</table>
+
+
